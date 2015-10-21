@@ -1,0 +1,33 @@
+to.do:
+cat
+    template para combos com canais e nome dos produtos
+    detalhes de combo?
+    recursos?
+ls
+    implementar combomulti
+    filtar combo e combomulti
+cart
+    tratamento de carrinho vazio
+    detalhes combo
+    
+push
+    mascara cep/correta/fone
+    mensagens custom de erro
+    lista data de pagamento corretas
+    lista de bancos
+    
+	fatura digital
+	emailBoleto
+    
+	validar datapgto
+	validar banco
+    validar agendamento
+    
+    dcc/boleto
+	validar data nascto > 18
+    
+conditions
+    dcc/boleto
+    fidelidade
+    digitalInvoice
+    
