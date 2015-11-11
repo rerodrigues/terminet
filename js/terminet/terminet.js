@@ -114,9 +114,13 @@ var Terminal = function(container){
 				_(tn.session).extend(_(['category','option']).object(newPath.match(/([^/]+)/g) || [undefined,undefined]));
 				
 				if (newPath == "/" || newPath == ".." || newPath == '/cart') {
-					tn.path = newPath;
-					delete tn.session.products;
-					this.echo(tpl(newPath == '/cart' ? 'cart' : 'pwd'), {raw:true});
+					if(newPath == '/cart' && !tn.cart.selection) {
+						this.error('Voc&ecirc; ainda n&atilde;o tem nenhum produto em seu carrinho de compras.');
+					} else {
+						tn.path = newPath;
+						delete tn.session.products;
+						this.echo(tpl(newPath == '/cart' ? 'cart' : 'pwd'), {raw:true});
+					}
 					
 				} else if(!tn.session.option && tn.data['has' + tn.session.category]){
 					tn.path = newPath;
