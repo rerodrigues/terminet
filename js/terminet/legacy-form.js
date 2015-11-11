@@ -46,6 +46,9 @@ var LegacyForm = function(selection) {
     var submit = function(callback, errorCallback){
         var userForm = $("#userForm").serialize();
         
+        //console.log(unescape(userForm)); //dbg
+        //return callback({}); //dbg
+        
         $.ajax({
             url: tn.mindLeadsPath + "convert",
             data: userForm,
