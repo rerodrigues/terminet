@@ -1,0 +1,38 @@
+@font-face {
+	font-family: 'terminet-icons';
+	src:url('../fonts/terminet-icons.eot?mva6nc');
+	src:url('../fonts/terminet-icons.eot?mva6nc#iefix') format('embedded-opentype'),
+		url('../fonts/terminet-icons.ttf?mva6nc') format('truetype'),
+		url('../fonts/terminet-icons.woff?mva6nc') format('woff'),
+		url('../fonts/terminet-icons.svg?mva6nc#terminet-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'terminet-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fone:before {
+	content: "\e606";
+}
+.icon-tv:before {
+	content: "\e619";
+}
+.icon-internet:before {
+	content: "\e635";
+}
+.icon-celular:before {
+	content: "\e600";
+}
+
