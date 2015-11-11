@@ -1,33 +1,32 @@
 to.do:
 cat
-    template para combos com canais e nome dos produtos
-    detalhes de combo?
+    canais no template do combo
+    mover detalhes de combo para outra tela?
     recursos?
 ls
-    implementar combomulti
-    filtar combo e combomulti
+    aceitar parametros?
+
+cd
+   aceitar mais de um nivel?
+
 cart
-    tratamento de carrinho vazio
-    detalhes combo
+    diferenciação qdo for combo?
     
 push
-    mascara cep/correta/fone
+    mascara p/ cep/fone/data/etc
     mensagens custom de erro
-    lista data de pagamento corretas
-    lista de bancos
     
-	fatura digital
-	emailBoleto
-    
-	validar datapgto
-	validar banco
-    validar agendamento
-    
+    fatura digital
+    emailBoleto
     dcc/boleto
-	validar data nascto > 18
+    validar data nascto > 18
+    validar cpf/cnpj
     
-conditions
+conditions - chmod
     dcc/boleto
     fidelidade
     digitalInvoice
     
+mudar cidade - mv
+    implementar mudança de cidade
+    solicitar na inicalização
