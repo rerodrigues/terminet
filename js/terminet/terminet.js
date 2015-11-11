@@ -150,41 +150,38 @@ var Terminal = function(container){
 				tn.session.form = {};
                 //tn.session.form = { "callback": "parseResponse", "version": "v2", "customerProfile": "residencial", "cityId": "1", "cidade": "SÃ£o Paulo", "cidade_cookie": "sao_paulo", "estado": "SP", "canalDeMidia": "desktop", "comboId": "187_143_144_1581", "tvId": "187", "internetId": "143", "foneId": "144", "celularId": "1581", "nomeCompleto": "TESTE TI - RR", "email": "renato.rodrigues2@net.com.br", "ddd1": "11", "tel1": "988775566", "ddd2": "11", "tel2": "33449988", "cpf": "299.116.288-09", "rg": "23423423", "data": "02/12/1900", "cep": "03090-000", "endereco": "Rua passa gordo", "numero": "150", "complemento": "buteco", "bairro": "Jd lala", "dcc": "1", "fidelity": "1", "fatura_digital": "1", "emailBoleto": "renato.rodrigues2@net.com.br", "prospect": "true", "dataPagto": "15", "banco": "33", "agencia": "200", "contaCorrente": "9898-0", "agendamento": "4", "adicionais": "{}", "oferta": "Valor promocional do Combo Multi R$ 409,89 por 6 meses (mais as ligaÃ§Ãµes efetuadas com base no plano contratado) e a partir do 7Âº mÃªs R$ 449,79Â (mais as ligaÃ§Ãµes efetuadas com base no plano contratado).Â Oferta exclusiva com portabilidade do celular.Ganhe o dobro da velocidade na Banda Larga!Â 2 equipamentos NET HD, Wi-Fi e AntivÃ­rus GrÃ¡tis!Â NET TV R$ 140,00.Â NET VIRTUA R$ 30,00 por 6 meses e a partir do 7Âº mÃªs R$ 69,90.Â NET FONE R$ 39,90Â (mais as ligaÃ§Ãµes efetuadas com base no plano contratado).Â NET CELULAR R$ 199,99 (mais ligaÃ§Ãµes excedentes ao plano contratado). *Oferta Exclusiva para clientes NET que adquirirem o plano de telefonia mÃ³vel com portabilidade de linha pÃ³s-paga ativa nos Ãºltimos 3 meses.Â Taxa de instalaÃ§Ã£o: GrÃ¡tis.", "portabilidade[celular][id]": "celular", "portabilidade[celular][ddd]": "", "portabilidade[celular][tel]": "", "portabilidade[celular][operadora]": "", "portabilidade[fixo][id]": "fixo", "portabilidade[fixo][ddd]": "", "portabilidade[fixo][tel]": "", "portabilidade[fixo][operadora]": "", "features[]": "combo-multi,wifi-gratis,ponto-opcional-gratis,net-now,tv-alta-definicao-hd,tv-esportes,tv-filmes,tv-documentarios,tv-informacao,tv-infantil,tv-series,tv-noticias,app-net-now,internet-antivirus-gratis,internet-estudar-online,internet-modem-wifi-gratis,velocidade-15-mega,pacote-dados,fone-ligacoes-gratuitas-entre-net-fone,fone-ligacoes-para-celular,fone-ilimitado-para-outros-estados", "isMulti": "1", "produto[nome]": "Top HD   15 Mega   Ilimitado Brasil 21   Multi 3 GB", "produto[preco]": "40989", "produto[precoDe]": "51969", "produto[adesao]": "0", "produto[taxaInstalacao]": "0", "produto[produtos][tv][nome]": "Top HD", "produto[produtos][tv][preco]": "14000", "produto[nomes][]": "Multi 3 GB", "produto[produtos][internet][nome]": "15 Mega", "produto[produtos][internet][preco]": "3000", "produto[produtos][fone][nome]": "Ilimitado Brasil 21", "produto[produtos][fone][preco]": "3990", "produto[produtos][celular][nome]": "Multi 3 GB", "produto[produtos][celular][preco]": "19999", "produto[periodos][0][mes]": "1", "produto[periodos][0][atual]": "40989", "produto[periodos][0][anterior]": "0", "produto[periodos][0][ultimoMes]": "6", "produto[periodos][1][mes]": "7", "produto[periodos][1][atual]": "44979", "produto[periodos][1][anterior]": "40989", "produto[periodos][1][ultimoMes]": ""}; //dbg
 				
-				mainTerm.echo('<h2>Para continuar, favor informar os campos abaixo:</h2>', {raw:true});
+				mainTerm.echo('<h2>Para continuar, favor informar os dados abaixo:</h2><p>A qualquer momento que tiver d&uacute;vidas digite o comando <code>help</code><p/>', {raw:true});
 				
-				_(steps).each(function(stepPrompt, step){
+				_(steps.reverse()).each(function(step){
 					mainTerm.push(function(input, term) {
 						input = input.replace(/^\s*|\s*$/g,'');
+						var validate = step.validate;
 						
-						if (input || step == "complemento" || step == "bairro") {
-							if(step == 'tel1' || step == 'tel2'){ /* tel1 & tel2 */
-								var which = step == 'tel1' ? 1 : 2,
-									telParams = input.replace(/[^\d]/g,'').match(/^(\d\d)(\d{8,9})$/); /* todo */
-									
-								if(telParams && telParams.length == 3){
-									tn.session.form['ddd' + which] = telParams[1];
-									tn.session.form['tel' + which] = telParams[2];
-									term.pop();
-								} else {
-									term.error('Favor informar o telefone no formato correto');
-								}
-							} else if /* validated fields */
-								((step == 'email' && !input.match(/^.+@[^@]+\.[^@]{2,}$/)) ||  /* e-mail */
-								 (step == 'cpf' && !input.match(/^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/)) || /* cpf */
-								 (step == 'data' && !input.match(/^\d{1,2}\/\d{1,2}\/(\d{4}|\d{2})$/)) || /* data */
-								 (step == 'cep' && !input.match(/^\d{5}-?\d{3}$/)) || /* cep */
-								 (step == 'agencia' && !input.match(/^\d+$/)) || /* agencia */
-								 (step == 'banco' && !_(['33','104','237','341']).include(input)) || /* banco */
-								 (step == 'dataPagto' && !_(['5','8','10','15','20']).include(input)) /* dataPagto */
-								) { 
-								term.error('Favor informar o campo no formato correto');					
-							} else { /* all other fields */
-								tn.session.form[step] = input;
-								term.pop();
+						if(input == 'help'){
+							var defaultHelp = "Este campo n&atilde;o possui nenhuma ajuda espec&iacute;fica.",
+								helpText = step.help || defaultHelp;
+								
+							if(helpText.match(/^#+/)) {
+								helpText = helpText.replace(/^#tpl-(.+)$/, function(m,g,i,s){
+									return tpl(g);
+								});
 							}
+							
+							term.echo(helpText, { raw : true });
+							
+						} else if (!step.optional && !input) {
+							term.error('O preenchimento deste campo &eacute; obrigat&oacute;rio. Digite help para obter ajuda.')
+							
+						} else if(validate && ((typeof validate == 'function' && !validate(input)) || typeof validate != 'function' && !input.match(validate))) {
+							term.error('Favor informar o valor deste campo no formato correto. Digite help para obter ajuda.');
+							
 						} else {
-							term.error('O preenchimento deste campo &eacute; obrigat&oacute;rio.')
-						}
+							if(input) {
+								tn.session.form[step.name] = input;
+							}
+							term.pop();
+						};
+						
 						
 						if(term.level() == 1) {
 							mainTerm.pause();
@@ -205,35 +202,82 @@ var Terminal = function(container){
 							);
 						};
 						
-					}, { prompt: stepPrompt + ' ' });
+					}, { prompt: step.prompt + ' ' });
 				});
 			}
 		},
 	};
 	
-	var steps = {
-		//'agendaInstalacao' : 'Qual o melhor dia para instalar net na sua casa?:',
-		'contaCorrente' : 'Conta Corrente (com dígito):',
-		'agencia' : 'Agência (sem dígito):',
-		'banco' : 'Banco (33, 104, 237 ou 341):',
-		'dataPagto' : 'Data de Vencimento (5, 8, 10 , 15 ou 20):',
-		'bairro' : 'Bairro (opcional):',
-		'complemento' : 'Complemento (opcional):',
-		'numero' : 'Número:',
-		'endereco' : 'Endereço completo:',
-		'cep' : 'CEP:',
-		'data' : 'Data de nascimento:',
-		'rg' : 'RG:',
-		'cpf' : 'CPF:',
-		'tel2' : 'Telefone fixo com DDD (sim, acredite, isto é obrigatório):',
-		'tel1' : 'Telefone celular com DDD:',
-		'email' : 'E-mail:',
-		'nomeCompleto' : 'Nome completo:',
-	};
+	var steps = [
+		{   name : 'nomeCompleto',
+			prompt : 'Nome completo:',
+			help : '#tpl-banco'
+		},
+		{   name : 'email',
+			prompt : 'E-mail:',
+			validate : /^.+@[^@]+\.[^@]{2,}$/
+		},
+		{   name : 'tel1',
+			prompt : 'Telefone celular com DDD:',
+			validate : function(input) { var tel = input.replace(/[^\d]/g,'').match(/^(\d\d)(\d{8,9})$/); return tel && tel.length == 3 }
+		},
+		{   name : 'tel2',
+			prompt : 'Telefone fixo com DDD (sim, acredite, isto é obrigatório):',
+			validate : function(input) { var tel = input.replace(/[^\d]/g,'').match(/^(\d\d)(\d{8,9})$/); return tel && tel.length == 3 }
+		},
+		{   name : 'cpf',
+			prompt : 'CPF:',
+			validate : /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/
+		},
+		{   name : 'rg',
+			prompt : 'RG:',
+		},
+		{   name : 'data',
+			prompt : 'Data de nascimento:',
+			validate : /^\d{1,2}\/\d{1,2}\/(\d{4}|\d{2})$/
+		},
+		{   name : 'cep',
+			prompt : 'CEP:',
+			validate : /^\d{5}-?\d{3}$/
+		},
+		{   name : 'endereco',
+			prompt : 'Endereço:',
+		},
+		{   name : 'numero',
+			prompt : 'Número:',
+		},
+		{   name : 'complemento',
+			prompt : 'Complemento (opcional):',
+			optional : true
+		},
+		{   name : 'bairro',
+			prompt : 'Bairro (opcional):',
+			optional : true
+		},
+		{   name : 'dataPagto',
+			prompt : 'Data de Vencimento (5, 8, 10 , 15 ou 20):',
+			validate : function(input) { return _(['5', '8', '10' , '15', '20']).contains(input); }
+		},
+		{   name : 'agencia',
+			prompt : 'Agência (sem dígito):',
+			validate : /^\d+$/
+		},
+		{   name : 'contaCorrente',
+			prompt : 'Conta Corrente (com dígito):',
+			validate : /^[\d-]+$/
+		}
+		/*
+		,{   name : 'agendaInstalacao',
+			prompt : 'Qual o melhor dia para instalar net na sua casa?:'
+		}
+		*/
+	];
 	
-    var steps_dbg = {
-        'debug' : 'debug mode',
-    };
+    var steps_dbg = [{
+        name     : 'debug',
+        prompt   : 'debug mode',
+		optional : true
+    }];
 	
 	return (container || document.body).terminal([commands, form], options);
 };

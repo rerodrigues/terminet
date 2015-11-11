@@ -279,8 +279,8 @@
             </table>
         </script>
         
-         <script type="text/template" id="tpl-form">
-            <!-- try to normalize and abstract the variables orgy -->
+        <script type="text/template" id="tpl-form">
+            <!-- try to normalize and abstract the variables orgy used in the form -->
             <%
                 var data = tn.data,
                     cart = tn.cart,
@@ -309,10 +309,12 @@
                 <!-- user information fields -->
                 <input type="hidden" name="nomeCompleto" value="<%= form.nomeCompleto %>" />
                 <input type="hidden" name="email" value="<%= form.email %>" />
-                <input type="hidden" name="ddd1" value="<%= form.ddd1 %>" />
-                <input type="hidden" name="tel1" value="<%= form.tel1 %>" />
-                <input type="hidden" name="ddd2" value="<%= form.ddd2 %>" />
-                <input type="hidden" name="tel2" value="<%= form.tel2 %>" />
+                <% var tel1 = form.tel1.replace(/[^\d]/g,'').match(/^(\d\d)(\d{8,9})$/) %>
+                <input type="hidden" name="ddd1" value="<%= tel1[1] %>" />
+                <input type="hidden" name="tel1" value="<%= tel1[2] %>" />
+                <% var tel2 = form.tel2.replace(/[^\d]/g,'').match(/^(\d\d)(\d{8,9})$/) %>
+                <input type="hidden" name="ddd2" value="<%= tel2[1] %>" />
+                <input type="hidden" name="tel2" value="<%= tel2[2] %>" />
                 
                 <% if (!empresas) { %>
                     <input type="hidden" name="cpf" value="<%= form.cpf %>" />
