@@ -22,11 +22,11 @@
         </div>
 	</div>
 
-	<script type="text/javascript" src="js/libs/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/libs/jquery.mousewheel-min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery-terminal/0.8.8/jquery.terminal-0.8.8.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-terminal/0.8.8/jquery.terminal-0.8.8.min.js"></script>
 	
-    <script type="text/javascript" src="js/libs/underscore-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/libs/underscore-1.6.0.min.js"></script>
 	<script type="text/javascript" src="js/libs/utils-min.js"></script>
 	<script type="text/javascript" src="js/libs/assine-ja-parser/parser.js"></script>
 	
@@ -60,7 +60,7 @@
         
         <script type="text/template" id="tpl-greetings">
             <%= $('#tpl-logo').html() %>
-            
+         
             <p>Bem vindo ao <strong>termiNET</strong>, a interface de assinatura da NET baseada em terminal.</p>
             
             <p>Para saber os comandos disponiveis digite <code>help</code>.</p>
@@ -143,7 +143,7 @@
                     product = product.combo;
                 }
             %>
-            
+                
             <h2><%= product.nome %></h2>
             
             <% if(product.oferta) { %>
