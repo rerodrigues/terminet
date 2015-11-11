@@ -109,7 +109,7 @@
                 <% } else if(category && _(tn.allProducts).contains(category)) { %>
                     <p>Produtos do tipo <em><%= category.toUpperCase() %></em> dispon&iacute;veis em <strong><%= tn.data.city %></strong>:</p>
                     
-                    <table class="product_list">
+                    <table class="products">
                         <tbody>
                         <%
                             var i = 1;
@@ -179,7 +179,7 @@
             %>
                 <h2>Seu carrinho de compras</h2>
                 
-                <table class="product_list">
+                <table class="products">
                     <tbody>
                     <%
                         _(products).each(function(productType){

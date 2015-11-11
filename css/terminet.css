@@ -22,6 +22,17 @@
   50% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+@keyframes fadeOut {
+    from { opacity: 0.2; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fadeOut {
+    from { opacity: 0.2; }
+    to { opacity: 1.0; }
+}
+
 .cmd, .cmd .prompt, .cmd .command {
   color: #0c0;
   text-shadow: 0 0 3px rgba(0,100,0,50);
@@ -37,6 +48,32 @@
   -ms-box-shadow: 0 0 5px rgba(0,100,0,50);
   -o-box-shadow: 0 0 5px rgba(0,100,0,50);
   box-shadow: 0 0 5px rgba(0,100,0,50);
+}
+
+.fadeOut {
+    animation:fadeOut 6000ms;
+    -webkit-animation:fadeOut 6000ms;
+}
+
+#loading-cap {
+  margin: 1em 0 0 1em;
+  font-family: FreeMono, monospace;
+  font-size: 12px;
+  font-weight: bold;
+  color: #0c0;
+  text-shadow: 0 0 3px rgba(0,100,0,50);
+  animation: blink 2s linear infinite;
+  -webkit-animation: blink 2s infinite linear;
+  -ms-animation: blink 2s infinite linear;
+  -moz-animation: blink 2s infinite linear;
+}
+
+#_templates, #_form {
+  display: none;
+}
+
+object { /* trick */
+  display: none !important;
 }
 
 *{
@@ -71,6 +108,22 @@ h2 {
   font-size: 12px;
   text-transform: uppercase;
 }
+
+[class^=icon-] {
+  font-size: 14px;
+  vertical-align: middle;
+  padding-right: 0.5em;
+}
+
+[class^=icon-]:before {
+    width: 1em;
+    display: inline-block;
+}
+
+.icon-celular:before {
+  content: "\e600"
+}
+
 .oferta {
   font-style: italic;
   border-bottom: double;
@@ -86,50 +139,39 @@ table.help tr td:first-child {
   padding-right: 1em;
 }
 
-table.product_list {
+table.products {
   margin-bottom: 1em;
   border-collapse: collapse;
 }
 
-table.product_list td{
+table.products td{
   vertical-align: top;
 }
 
-table.product_list td:last-child {
+table.products td:last-child {
   text-align: right;
   padding-left: 1.5em;
 }
 
-table.product_list tbody td {
+table.products tbody td {
   padding: 0.25em 0;
 }
-table.product_list tbody td:first-child {
+
+table.products tbody td:first-child {
   padding-right: 1.5em;
 }
 
-table.product_list tbody td:first-child [class^=icon-] {
-  font-size: 14px;
-  vertical-align: middle;
-  padding-right: 0.5em;
-  display: inline-block;
-  width: 1em;
-}
-
-table.product_list tbody tr:last-child td {
+table.products tbody tr:last-child td {
   padding-bottom: 0.5em !important;
 }
 
-table.product_list tfoot td {
+table.products tfoot td {
   text-align: right;
 }
 
-table.product_list tfoot tr:first-child td {
+table.products tfoot tr:first-child td {
   border-top: double;
   padding-top: 0.5em;
-}
-
-.icon-celular:before {
-  content: "\e600"
 }
 
 table.success {
@@ -140,38 +182,8 @@ table.success tr td:first-child {
   padding-right: 2em;
 }
 
-#_templates, #_form {
-  display: none;
-}
-
-#loading-cap {
-  margin: 1em 0 0 1em;
-  font-family: FreeMono, monospace;
-  font-size: 12px;
-  font-weight: bold;
-  color: #0c0;
-  text-shadow: 0 0 3px rgba(0,100,0,50);
-  animation: blink 2s linear infinite;
-  -webkit-animation: blink 2s infinite linear;
-  -ms-animation: blink 2s infinite linear;
-  -moz-animation: blink 2s infinite linear;
-}
-
-@keyframes fade {
-    from { opacity: 0.2; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 0.2; }
-    to { opacity: 1.0; }
-}
- 
-.fadeOut {
-    animation:fade 6000ms;
-    -webkit-animation:fade 6000ms;
-}
-
-object { /* trick */
-  display: none !important;
+.detalhes p:last-child {
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    border-bottom: double;
 }
