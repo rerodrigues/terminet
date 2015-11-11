@@ -258,6 +258,11 @@ var Terminal = function(container){
 			prompt : 'Data de Vencimento (5, 8, 10 , 15 ou 20):',
 			validate : function(input) { return _(['5', '8', '10' , '15', '20']).contains(input); }
 		},
+		{   name : 'banco',
+			prompt : 'Banco (número):',
+			validate : function(input) { return _(['237', '341', '33', '104', '477', '399', '422', '41', '70', '37', '756', '748', '389', '21']).contains(input) },
+			help : '#tpl-banco'
+		},
 		{   name : 'agencia',
 			prompt : 'Agência (sem dígito):',
 			validate : /^\d+$/
