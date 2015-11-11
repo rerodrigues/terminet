@@ -140,6 +140,18 @@
         <script type="text/template" id="tpl-cat">
             <%
                 if(tn.session.category == 'combo' || tn.session.category == 'combomulti') {
+                    var productDetails = '<div class="detalhes">';
+                    
+                    _(['tv','internet','fone','celular']).each(function(productType){
+                        if(product[productType]) {
+                            productDetails += '<p><em><i class="icon-' + productType + '"></i>' + product[productType].nome + '</em></p>';
+                            if(product[productType].vantagens) {
+                                productDetails += '<div>' + product[productType].vantagens + '</div>';
+                            }
+                        }
+                    });
+                    productDetails += "</div>"
+                    
                     product = product.combo;
                 }
             %>
@@ -156,6 +168,10 @@
             
             <% if(product.canais) { %>
                 <p><em><%= product.canais %> canais</em></p>
+            <% } %>
+            
+            <% if(productDetails) { %>
+                <%= productDetails %>
             <% } %>
             
             <% if(product.precoDe > product.preco) { %>
