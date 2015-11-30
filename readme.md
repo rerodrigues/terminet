@@ -25,7 +25,8 @@ To use it, simply access TermiNET and start typing the commands.
 - *push* : asks for your personal data and then sends your order
 - *help* : shows this list
 
-Check the [demo page](http://www.renatorodrigues.ninja/terminet) for a working demo.
+## Demo:
+To see TermiNET in action check the [demo page](http://www.renatorodrigues.ninja/terminet).
 
 ## License:
 Use it as you wish. I would greatly appreciate if you keep the credits though.
