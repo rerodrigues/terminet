@@ -72,10 +72,6 @@
   display: none;
 }
 
-object { /* trick */
-  display: none !important;
-}
-
 *{
   box-sizing: border-box;
 }
@@ -103,12 +99,6 @@ ol {
   padding-left: 2.5em;
 }
 
-h2 {
-  margin: 1em 0;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
 [class^=icon-] {
   font-size: 14px;
   vertical-align: middle;
@@ -118,6 +108,25 @@ h2 {
 [class^=icon-]:before {
     width: 1em;
     display: inline-block;
+}
+
+.terminal h2 {
+  margin: 1em 0;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.terminal table {
+  border-collapse: separate;
+}
+
+.terminal td {
+  border: none;
+}
+
+
+.terminal pre {
+  margin: 12px 0;
 }
 
 .icon-celular:before {
