@@ -1,3 +1,5 @@
+"use strict";
+
 jQuery(function(){
 	var initData = utils.populateInitialData();
     window.tn = new Terminet(initData);
@@ -210,8 +212,7 @@ var Terminal = function(container){
 
 	var steps = [
 		{   name : 'nomeCompleto',
-			prompt : 'Nome completo:',
-			help : '#tpl-banco'
+			prompt : 'Nome completo:'
 		},
 		{   name : 'email',
 			prompt : 'E-mail:',
