@@ -1,10 +1,5 @@
 "use strict";
 
-jQuery(function(){
-	var initData = utils.populateInitialData();
-    window.tn = new Terminet(initData);
-});
-
 var Terminet = function(initData) {
 	var tnData = _.extend(initData,{
 		cidade : initData.cidade || "sao_paulo",
@@ -143,12 +138,13 @@ var Terminal = function(container){
 		}
 	};
 
+    /* globals tn: false */
 	var form = {
 		push : function() {
 			if(!tn.cart.selection) {
 				this.error('Voc&ecirc; n&atilde;o tem nenhum produto em seu carrinho de compras.');
 			} else {
-				mainTerm = this;
+				var mainTerm = this;
 				tn.session.form = {};
                 //tn.session.form = { "callback": "parseResponse", "version": "v2", "customerProfile": "residencial", "cityId": "1", "cidade": "SÃ£o Paulo", "cidade_cookie": "sao_paulo", "estado": "SP", "canalDeMidia": "desktop", "comboId": "187_143_144_1581", "tvId": "187", "internetId": "143", "foneId": "144", "celularId": "1581", "nomeCompleto": "TESTE TI - RR", "email": "renato.rodrigues2@net.com.br", "ddd1": "11", "tel1": "988775566", "ddd2": "11", "tel2": "33449988", "cpf": "299.116.288-09", "rg": "23423423", "data": "02/12/1900", "cep": "03090-000", "endereco": "Rua passa gordo", "numero": "150", "complemento": "buteco", "bairro": "Jd lala", "dcc": "1", "fidelity": "1", "fatura_digital": "1", "emailBoleto": "renato.rodrigues2@net.com.br", "prospect": "true", "dataPagto": "15", "banco": "33", "agencia": "200", "contaCorrente": "9898-0", "agendamento": "4", "adicionais": "{}", "oferta": "Valor promocional do Combo Multi R$ 409,89 por 6 meses (mais as ligaÃ§Ãµes efetuadas com base no plano contratado) e a partir do 7Âº mÃªs R$ 449,79Â (mais as ligaÃ§Ãµes efetuadas com base no plano contratado).Â Oferta exclusiva com portabilidade do celular.Ganhe o dobro da velocidade na Banda Larga!Â 2 equipamentos NET HD, Wi-Fi e Antivírus Grátis! NET TV R$ 140,00.Â NET VIRTUA R$ 30,00 por 6 meses e a partir do 7Âº mÃªs R$ 69,90.Â NET FONE R$ 39,90Â (mais as ligaÃ§Ãµes efetuadas com base no plano contratado).Â NET CELULAR R$ 199,99 (mais ligaÃ§Ãµes excedentes ao plano contratado). *Oferta Exclusiva para clientes NET que adquirirem o plano de telefonia mÃ³vel com portabilidade de linha pÃ³s-paga ativa nos Ãºltimos 3 meses.Â Taxa de instalaÃ§Ã£o: GrÃ¡tis.", "portabilidade[celular][id]": "celular", "portabilidade[celular][ddd]": "", "portabilidade[celular][tel]": "", "portabilidade[celular][operadora]": "", "portabilidade[fixo][id]": "fixo", "portabilidade[fixo][ddd]": "", "portabilidade[fixo][tel]": "", "portabilidade[fixo][operadora]": "", "features[]": "combo-multi,wifi-gratis,ponto-opcional-gratis,net-now,tv-alta-definicao-hd,tv-esportes,tv-filmes,tv-documentarios,tv-informacao,tv-infantil,tv-series,tv-noticias,app-net-now,internet-antivirus-gratis,internet-estudar-online,internet-modem-wifi-gratis,velocidade-15-mega,pacote-dados,fone-ligacoes-gratuitas-entre-net-fone,fone-ligacoes-para-celular,fone-ilimitado-para-outros-estados", "isMulti": "1", "produto[nome]": "Top HD   15 Mega   Ilimitado Brasil 21   Multi 3 GB", "produto[preco]": "40989", "produto[precoDe]": "51969", "produto[adesao]": "0", "produto[taxaInstalacao]": "0", "produto[produtos][tv][nome]": "Top HD", "produto[produtos][tv][preco]": "14000", "produto[nomes][]": "Multi 3 GB", "produto[produtos][internet][nome]": "15 Mega", "produto[produtos][internet][preco]": "3000", "produto[produtos][fone][nome]": "Ilimitado Brasil 21", "produto[produtos][fone][preco]": "3990", "produto[produtos][celular][nome]": "Multi 3 GB", "produto[produtos][celular][preco]": "19999", "produto[periodos][0][mes]": "1", "produto[periodos][0][atual]": "40989", "produto[periodos][0][anterior]": "0", "produto[periodos][0][ultimoMes]": "6", "produto[periodos][1][mes]": "7", "produto[periodos][1][atual]": "44979", "produto[periodos][1][anterior]": "40989", "produto[periodos][1][ultimoMes]": ""}; //dbg
 
@@ -184,11 +180,10 @@ var Terminal = function(container){
 							term.pop();
 						}
 
-
 						if(term.level() == 1) {
 							mainTerm.pause();
 
-							formUtils = new LegacyForm(tn.cart.selection);
+							var formUtils = new LegacyForm(tn.cart.selection);
 							$('#_form').html(_.template($('#tpl-form').html()));
 
 							formUtils.submit(
@@ -287,3 +282,8 @@ var Terminal = function(container){
 
 	return (container || document.body).terminal([commands, form], options);
 };
+
+jQuery(function(){
+    var initData = utils.populateInitialData();
+        window.tn = new Terminet(initData);
+});

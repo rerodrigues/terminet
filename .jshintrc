@@ -1,0 +1,15 @@
+{
+  "strict": "global",
+  "browser": true,
+  "devel": true,
+  "sub": true,
+  "node": true,
+  "globals" : {
+      "jQuery" : false,
+      "$" : false,
+      "_" : false,
+      "AssineJaParser" : false,
+      "utils" : false,
+      "LegacyForm" : false
+  }
+}
