@@ -1,0 +1,8 @@
+{
+  "directory": "./js/libs",
+  "color": true,
+  "scripts": {
+    "preinstall": "",
+    "postinstall": ""
+  }
+}

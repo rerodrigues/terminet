@@ -4,8 +4,8 @@
 <head>
     <title>termiNET</title>
 	<meta charset="utf-8" />
-    
-	<link type="text/css" rel="stylesheet" href="js/libs/jquery-terminal/0.9.2/jquery.terminal-0.9.2.css" />
+
+	<link type="text/css" rel="stylesheet" href="js/libs/jquery.terminal/css/jquery.terminal.min.css" />
 	<link type="text/css" rel="stylesheet" href="css/terminet.css" />
 	<link type="text/css" rel="stylesheet" href="css/terminet-icons.css" />
 </head>
@@ -22,19 +22,19 @@
         </div>
 	</div>
 
-	<script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.mousewheel-min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery-terminal/0.9.2/jquery.terminal-0.9.2.min.js"></script>
-	<script type="text/javascript" src="js/libs/underscore-1.6.0.min.js"></script>
-		
+	<script type="text/javascript" src="js/libs/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.terminal/js/jquery.mousewheel-min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.terminal/js/jquery.terminal.min.js"></script>
+	<script type="text/javascript" src="js/libs/underscore/underscore.js"></script>
+
 	<script type="text/javascript" src="//www.netcombo.com.br/static/html_cms/js/utils-min.js"></script>
 	<script type="text/javascript" src="//www.netcombo.com.br/static/html_cms/js/assine-ja-parser-min.js"></script>
-	
+
 	<script type="text/javascript" src="js/terminet/terminet.js"></script>
 	<script type="text/javascript" src="js/terminet/legacy-form.js"></script>
-    
+
     <div id="_form"></div>
-    
+
     <div id="_templates">
         <script type="text/template" id="tpl-prompt">
             net@<%= tn.cidade %>:<%= tn.path %>#&nbsp;
@@ -57,26 +57,26 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </pre>
         </script>
-        
+
         <script type="text/template" id="tpl-greetings">
             <%= $('#tpl-logo').html() %>
-         
+
             <p>Bem vindo ao <strong>termiNET</strong>, a interface de assinatura da NET baseada em terminal.</p>
-            
+
             <p>Para saber os comandos disponiveis digite <code>help</code>.</p>
         </script>
-        
+
         <script type="text/template" id="tpl-ver">
             <div class="fadeOut">
                 <%= $('#tpl-logo').html() %>
-                
+
                 <p>Feito por um programador entediado num final de semana qualquer...</p>
             </div>
         </script>
-        
+
         <script type="text/template" id="tpl-help">
             <h2>Comandos dispon&iacute;veis:</h2>
-            
+
             <table class="help">
                 <tr><td><code>ls</code></td><td>: lista as categorias de produtos / produtos dispon&iacute;veis em sua localiza&ccedil;&atilde;o</td></tr>
                 <tr><td><code>cd</code></td><td>: acessa uma categoria de produtos / produto</td></tr>
@@ -87,16 +87,16 @@
                 <tr><td><code>push</code></td><td>: envia seu pedido de compra</td></tr>
                 <tr><td><code>help</code></td><td>: esta tela</td></tr>
             </table>
-            
+
         </script>
-        
+
         <script type="text/template" id="tpl-ls">
             <%
                 var category = tn.session.category;
-                
+
                 if(tn.path == '/') {
                     var products = [];
-                    
+
                     _(tn.allProducts).each(function(productType){
                         if(tn.data['has' + productType]) {
                             products.push(productType);
@@ -105,10 +105,10 @@
                     %>
                     <p>Categorias de produtos dispon&iacute;veis em <strong><%= tn.data.city %></strong>: <em><%= products.join('</em>, <em>') %></em>.</p>
                     <p>Para acessar uma categoria digite <code>cd</code> e o nome da categoria.</p>
-                    
+
                 <% } else if(category && _(tn.allProducts).contains(category)) { %>
                     <p>Produtos do tipo <em><%= category.toUpperCase() %></em> dispon&iacute;veis em <strong><%= tn.data.city %></strong>:</p>
-                    
+
                     <table class="products">
                         <tbody>
                         <%
@@ -120,7 +120,7 @@
                                 %>
                                 <tr>
                                     <td><%= i++ %></td>
-                                    <td><%= product.nome.toUpperCase() %></td> 
+                                    <td><%= product.nome.toUpperCase() %></td>
                                     <% if(product.precoDe > product.preco) { %>
                                         <td><small>de <strike><%= product.precoDe.currency() %></strike><br /> por </small><strong><%= product.preco.currency() %></strong></td>
                                     <% } else { %>
@@ -132,16 +132,16 @@
                         %>
                         </tbody>
                     </table>
-                    
+
                     <p>Para ver os detalhes de um produto digite <code>cat</code> e o n&uacute;mero do produto.</p>
                 <% } %>
         </script>
-        
+
         <script type="text/template" id="tpl-cat">
             <%
                 if(tn.session.category == 'combo' || tn.session.category == 'combomulti') {
                     var productDetails = '<div class="detalhes">';
-                    
+
                     _(['tv','internet','fone','celular']).each(function(productType){
                         if(product[productType]) {
                             productDetails += '<p><em><i class="icon-' + productType + '"></i>' + product[productType].nome + '</em></p>';
@@ -151,60 +151,60 @@
                         }
                     });
                     productDetails += "</div>"
-                    
+
                     product = product.combo;
                 }
             %>
-                
+
             <h2><%= product.nome %></h2>
-            
+
             <% if(product.oferta) { %>
                 <div class="oferta"><%= product.oferta.replace(/(<([^>]+)>)/ig,"") %></div>
             <% } %>
-            
+
             <% if(product.vantagens) { %>
                 <p><%= product.vantagens %></p>
             <% } %>
-            
+
             <% if(product.canais) { %>
                 <p><em><%= product.canais %> canais</em></p>
             <% } %>
-            
+
             <% if(productDetails) { %>
                 <%= productDetails %>
             <% } %>
-            
+
             <% if(product.precoDe > product.preco) { %>
                 <p>Preço: de <strike><%= product.precoDe.currency() %></strike> por <strong><%= product.preco.currency() %></strong></p>
             <% } else { %>
                 <p>Preço: <strong><%= product.preco.currency() %></strong></p>
             <% } %>
-            
+
             <p>Para adicionar este produto ao carrinho digite <code>commit <%= index %>.</code></p>
         </script>
-        
+
         <script type="text/template" id="tpl-commit">
             <p>Produto <em><%= product.combo ? product.combo.nome : product.nome %></em> adicionado ao carrinho.</p>
             <p>Para visualizar seu carrinho digite <code>cd /cart</code>.</p>
         </script>
-        
+
         <script type="text/template" id="tpl-cart">
             <%
             if(tn.cart.selection) {
                 var products = ['tv','internet','fone','celular'];
             %>
                 <h2>Seu carrinho de compras</h2>
-                
+
                 <table class="products">
                     <tbody>
                     <%
                         _(products).each(function(productType){
                             var product = tn.cart.selection[productType];
-                            
+
                             if(product) { %>
                                 <tr>
                                     <td><i class="icon-<%= productType %>"></i><%= productType.toUpperCase() %></td>
-                                    <td><%= product.nome.toUpperCase() %></td> 
+                                    <td><%= product.nome.toUpperCase() %></td>
                                     <% if(product.precoDe > product.preco) { %>
                                         <td><small>de <strike><%= product.precoDe.currency() %></strike><br /> por </small><strong><%= product.preco.currency() %></strong></td>
                                     <% } else { %>
@@ -240,15 +240,15 @@
                         </tr>
                     </tfoot>
                 </table>
-                
+
                 <p>Para finalizar seu pedido utilize o comando <code>push</code>.</p>
             <% } %>
         </script>
-        
+
         <script type="text/template" id="tpl-pwd">
             <p>Voc&ecirc; est&aacute; agora em <em><%= tn.path %></em></p>
         </script>
-        
+
         <script type="text/template" id="tpl-success">
             <table class="success">
                 <tbody>
@@ -267,18 +267,18 @@
                         </pre></td>
                         <td>
                             <h2>OBRIGADO!</h2>
-                            
+
                             <p>RECEBEMOS O SEU PEDIDO.</p>
-                            
+
                             <p>A conclusão desta compra está sujeita a confirmação da disponibilidade técnica para instalação do(s) serviços(s) solicitados no endereço e numeração especificados em sua solicitação.</p>
-                            
+
                             <p>POR FAVOR, VERIFIQUE A CONFIRMAÇÃO DE PEDIDO ENVIADA PARA SEU E-MAIL.</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </script>
-        
+
         <script type="text/template" id="tpl-form">
             <!-- try to normalize and abstract the variables orgy used in the form -->
             <%
@@ -288,7 +288,7 @@
                     selection = cart.selection || {},
                     form = tn.session && tn.session.form || {};
             %>
-            
+
             <form id="userForm" action="/">
                 <!-- system fields -->
                 <input type="hidden" name="version" value="v2" />
@@ -298,14 +298,14 @@
                 <input type="hidden" name="cidade_cookie" value="<%= data.cityId %>" />
                 <input type="hidden" name="estado" value="<%= data.uf %>" />
                 <input type="hidden" name="canalDeMidia" value="desktop" />
-                
+
                 <!- cart fields -->
                 <input type="hidden" name="comboId" value="<%= selection.combo ? selection.combo.id : '' %>" />
                 <input type="hidden" name="tvId" value="<%= selection.tv ? selection.tv.id : '' %>" />
                 <input type="hidden" name="internetId" value="<%= selection.internet ? selection.internet.id : '' %>" />
                 <input type="hidden" name="foneId" value="<%= selection.fone ? selection.fone.id : '' %>" />
                 <input type="hidden" name="celularId" value="<%= selection.celular ? selection.celular.id : '' %>" />
-                
+
                 <!-- user information fields -->
                 <input type="hidden" name="nomeCompleto" value="<%= form.nomeCompleto %>" />
                 <input type="hidden" name="email" value="<%= form.email %>" />
@@ -315,7 +315,7 @@
                 <% var tel2 = form.tel2.replace(/[^\d]/g,'').match(/^(\d\d)(\d{8,9})$/) %>
                 <input type="hidden" name="ddd2" value="<%= tel2[1] %>" />
                 <input type="hidden" name="tel2" value="<%= tel2[2] %>" />
-                
+
                 <% if (!empresas) { %>
                     <input type="hidden" name="cpf" value="<%= form.cpf %>" />
                 <% } else { %>
@@ -323,13 +323,13 @@
                 <% } %>
                 <input type="hidden" name="rg" value="<%= form.rg %>" />
                 <input type="hidden" name="data" value="<%= form.data %>" />
-                
+
                 <input type="hidden" name="cep" value="<%= form.cep %>" />
                 <input type="hidden" name="endereco" value="<%= form.endereco %>" />
                 <input type="hidden" name="numero" value="<%= form.numero %>"/>
                 <input type="hidden" name="complemento" value="<%= form.complemento %>" />
                 <input type="hidden" name="bairro" value="<%= form.bairro %>" />
-                
+
                 <input type="hidden" name="prospect" value="<%= !cart.conditions.subscriber %>" />
                 <input type="hidden" name="dcc" value="<%= cart.conditions.dcc ? 1 : 0 %>" />
                 <input type="hidden" name="fidelity" value="<%= cart.conditions.fidelity ? 1 : 0 %>" />
@@ -337,7 +337,7 @@
                 <% if(cart.conditions.digitalInvoice) { %>
                     <input type="hidden" name="emailBoleto" value="<%= form.email %>" />
                 <% } %>
-                
+
                 <% if(cart.conditions.dcc) { %>
                     <input type="hidden" name="dataPagto" value="<%= form.dataPagto %>" />
                     <input type="hidden" name="banco" value="<%= form.banco %>" />
@@ -352,38 +352,38 @@
                     <input type="hidden" name="estadoBoleto" value="<%= form.estadoBoleto %>" />
                     <input type="hidden" name="cidadeBoleto" value="<%= form.cidadeBoleto %>" />
                 <% } %>
-                
+
                 <input type="hidden" name="agendamento" value="<%= formUtils.agendaInstalacao(form.agendaInstalacao) %>" />
-                
+
                 <!-- products -->
                 <input type="hidden" name="adicionais" value="<%= formUtils.getAdicionaisSelecionados(cart) %>" />
                 <input type="hidden" name="oferta" value='<%= selection.combo ? utils.stripTags(selection.combo.oferta) : formUtils.productOfertas %>' />
-                
+
                 <% if(selection.fone &&  selection.fone.somentePortabilidade){ %>
                     <input type="hidden" name="portabilidade[fixo][id]" value="fixo" />
                     <input type="hidden" name="portabilidade[fixo][ddd]" value="<%= form.portabilidade_fixo_ddd ? form.portabilidade_fixo_ddd : '' %>" />
                     <input type="hidden" name="portabilidade[fixo][tel]" value="<%= form.portabilidade_fixo_tel ? form.portabilidade_fixo_tel: '' %>" />
                     <input type="hidden" name="portabilidade[fixo][operadora]" value='<%= form.portabilidade_fixo_operadora ? form.portabilidade_fixo_operadora.replace(/["\[\]\/]/gi, '') : '' %>' />
                 <% } %>
-                
+
                 <% if(selection.celular && selection.celular.somentePortabilidade){ %>
                     <input type="hidden" name="portabilidade[celular][id]" value="celular" />
                     <input type="hidden" name="portabilidade[celular][ddd]" value="<%= form.portabilidade_celular_ddd ? form.portabilidade_celular_ddd : '' %>" />
                     <input type="hidden" name="portabilidade[celular][tel]" value="<%= form.portabilidade_celular_tel ? form.portabilidade_celular_tel: '' %>" />
                     <input type="hidden" name="portabilidade[celular][operadora]" value='<%= form.portabilidade_celular_operadora ? form.portabilidade_celular_operadora.replace(/["\[\]\/]/gi, '') : '' %>' />
                 <% } %>
-                
+
                 <input type="hidden" name="features[]" value="<%= formUtils.tagsAll %>" />
-                
+
                 <input type="hidden" name="isMulti" value="<%= selection.celular ? 1 : 0 %>" />
-                
+
                 <input type="hidden" name="produto[nome]" value="<%= selection.combo ? selection.combo.nome : _.pluck(selection, 'nome').join(' + ') %>" />
-                
+
                 <input type="hidden" name="produto[preco]" value="<%= cart.getMontly() %>" />
                 <input type="hidden" name="produto[precoDe]" value="<%= cart.getMontlyFrom() %>" />
                 <input type="hidden" name="produto[adesao]" value="<%= cart.getSignup() %>" />
                 <input type="hidden" name="produto[taxaInstalacao]" value="<%= cart.getInstallation() %>" />
-                
+
                 <% _(['tv','internet','fone','celular']).each(function(productType) {
                         if(selection[productType]) { %>
                             <input type="hidden" name="produto[produtos][<%= productType %>][nome]" value="<%= selection[productType].nome %>" />
@@ -391,7 +391,7 @@
                             <input type="hidden" name="produto[nomes][]" value="<%= selection[productType].nome %>" />
                     <%  }
                     });
-                    
+
                     var periodos = cart.getPeriodos();
                     _(periodos).each(function(periodo, key){
                         _(periodo).each(function(periodoCampo, keyCampo){
@@ -402,12 +402,12 @@
                     });
                 %>
             </form>
-            
+
         </script>
-        
+
         <script type="text/template" id="tpl-banco">
             <h2>Bancos dispon&iacute;veis:</h2>
-            
+
             <table class="bancos">
                 <tbody>
                     <tr><td>237</td><td>BANCO BRADESCO S.A.</td></tr>
@@ -426,12 +426,12 @@
                     <tr><td>21</td><td>BANESTES S/A</td></tr>
                 </tbody>
             </table>
-            
+
             <p>Para continuar, digite o n&uacute;mero do banco</p>
-            
+
         </script>
-        
-        
+
+
     </div> <!-- /#_templates -->
 </body>
 </html>

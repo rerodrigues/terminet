@@ -1,0 +1,26 @@
+{
+  "name": "terminet",
+  "homepage": "https://github.com/rerodrigues/terminet",
+  "authors": [
+    "Renato Rodrigues <renato.sp@gmail.com>"
+  ],
+  "description": "A terminal client for the net.com.br signup process",
+  "main": "index.html",
+  "keywords": [
+    "NET",
+    "netcombo"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.terminal": "^0.11.21",
+    "underscore": "1.6.0"
+  }
+}
