@@ -112,11 +112,24 @@
                         }
                     });
                     %>
-                    <p>Categorias de produtos dispon&iacute;veis em <strong><%= tn.data.city %></strong>: <em><%= products.join('</em>, <em>') %></em>.</p>
+                    <p>Categorias de produtos dispon&iacute;veis em <strong><%= tn.cidade %></strong>:</p>
+
+                    .<br />
+                    └── <em>produtos</em><br/>
+
+                    <% _(products).each(function(product, i) { %>
+                        &nbsp;&nbsp;&nbsp;&nbsp;│<br />
+                        <% if(i < products.length-1) { %>
+                            &nbsp;&nbsp;&nbsp;&nbsp;├── <%= product %><br />
+                        <% } else { %>
+                            &nbsp;&nbsp;&nbsp;&nbsp;└── <%= product %><br />
+                        <% } %>
+                    <% }) %>
+
                     <p>Para acessar uma categoria digite <code>cd</code> e o nome da categoria.</p>
 
                 <% } else if(category && _(tn.allProducts).contains(category)) { %>
-                    <p>Produtos do tipo <em><%= category.toUpperCase() %></em> dispon&iacute;veis em <strong><%= tn.data.city %></strong>:</p>
+                    <p>Produtos do tipo <em><%= category.toUpperCase() %></em> dispon&iacute;veis em <strong><%= tn.cidade %></strong>:</p>
 
                     <table class="products">
                         <tbody>
