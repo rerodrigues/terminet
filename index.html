@@ -11,8 +11,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
     <meta name="theme-color" content="#000000">
 
-    <link rel="manifest" href="manifest.json" />
-
     <link type="text/css" rel="stylesheet" href="js/libs/jquery.terminal/css/jquery.terminal.min.css" />
     <link type="text/css" rel="stylesheet" href="css/terminet.css" />
     <link type="text/css" rel="stylesheet" href="css/terminet-icons.css" />
@@ -20,23 +18,26 @@
 
 <body>
 
+    <input type="hidden" class="initData" id="cidade" value="sao_paulo" />
+    <input type="hidden" class="initData" id="dataPath" value="//static.net.com.br/json/assine/" />
+    <input type="hidden" class="initData" id="mindLeadsPath" value="//assine.net.com.br/mindLeads/" />
 
-	<div id="terminal-container">
+    <div id="terminal-container">
         <div id="loading-cap" class="blink">
             <p>Carregando...<br/>Por favor aguarde...</p>
         </div>
-	</div>
+    </div>
 
-	<script type="text/javascript" src="js/libs/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.terminal/js/jquery.mousewheel-min.js"></script>
-	<script type="text/javascript" src="js/libs/jquery.terminal/js/jquery.terminal.min.js"></script>
-	<script type="text/javascript" src="js/libs/underscore/underscore.js"></script>
+    <script type="text/javascript" src="js/libs/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.terminal/js/jquery.mousewheel-min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <script type="text/javascript" src="js/libs/underscore/underscore.js"></script>
 
     <script type="text/javascript" src="//ecommerce.amxstatic.com.br/js/common/utils_cms.min.js"></script>
     <script type="text/javascript" src="//js.amxstatic.com.br/libs/assine-ja-parser-min.js"></script>
 
-	<script type="text/javascript" src="js/terminet/terminet.js"></script>
-	<script type="text/javascript" src="js/terminet/legacy-form.js"></script>
+    <script type="text/javascript" src="js/terminet/terminet.js"></script>
+    <script type="text/javascript" src="js/terminet/legacy-form.js"></script>
 
     <div id="_form"></div>
 
