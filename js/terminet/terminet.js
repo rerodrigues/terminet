@@ -184,7 +184,7 @@ var Terminal = function(container){
 							mainTerm.pause();
 
 							var formUtils = new LegacyForm(tn.cart.selection);
-							$('#_form').html(_.template($('#tpl-form').html()));
+							$('#_form').html(_.template($('#tpl-form').html(), { formUtils: formUtils }));
 
 							formUtils.submit(
 								function(data){
